@@ -18,7 +18,7 @@ Rails Version 5 or higher
 Postgresql
 ```
 
-## Installation Instructions
+### Installation Instructions
 
 Clone this repository into your machine using the following command:
 ```ruby
