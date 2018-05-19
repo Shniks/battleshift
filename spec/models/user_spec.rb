@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
 
   describe 'creation' do
     let(:user) { create(:user) }
-    let(:unregistered) { create(:unregistered_user) }
+    let(:unregistered) { create(:user, :unregistered) }
 
     it 'should have an api key' do
       expect(user.api_key).to_not be_nil  
@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'instance methods' do
-    let(:unregistered) { create(:unregistered_user) }
+    let(:unregistered) { create(:user, :unregistered) }
     let(:registered) { create(:user) }
 
     it '#activated?' do
@@ -33,7 +33,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'class methods' do
-    let(:user) { create(:unregistered_user) }
+    let(:user) { create(:user, :unregistered) }
 
     it '.find_and_activate' do
       found = User.find_and_activate(user.api_key)

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Users::ActivationController, type: :controller do
   describe 'endpoints' do
     describe 'PATCH update' do
-      let(:user) { create(:unregistered_user) }
+      let(:user) { create(:user, :unregistered) }
 
       it 'activates the user' do
         patch :update, params: { key: user.api_key }

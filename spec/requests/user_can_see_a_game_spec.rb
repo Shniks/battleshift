@@ -38,7 +38,7 @@ describe 'GET /api/v1/games/1' do
                          player_2_turns: 0,
                          current_turn: "challenger",
                          player_1: create(:user),
-                         player_2: create(:user_2)}
+                         player_2: create(:user)}
 
       game = Game.new(game_attributes)
       game.save!

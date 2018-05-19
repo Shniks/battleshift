@@ -1,24 +1,22 @@
 FactoryBot.define do
   factory :user, class: User do
-    name 'Burbot'
-    email 'burbotsrevenge@yahoo.com'
+    name { generate(:name) } 
+    email { generate(:email) } 
     activated true
     password 'hayheyatthebay'
-    api_key '45DDE$RTTW//=='
   end
 
-  factory :user_2, class: User do
-    name 'Burbot'
-    email 'burbotsrevenge2@yahoo.com'
-    activated true
-    password 'hayheyatthebay'
-    api_key '45DDE$RTTW//=1'
+  sequence :name do |n|
+    "user_#{n}"
   end
 
-  factory :unregistered_user, class: User do
-    name 'Captain Morgan'
-    email 'CaptainMorgansRevenge@comcast.net'
+  sequence :email do |n|
+    "user_#{n}@#{%w[comcast.net gmail.com yahoo.com].sample}"
+  end
+
+  trait :unregistered do
     activated false
-    password 'blobbloblchickenflob'
   end
+
+  factory :unregistered_user, traits: [:unregistered]
 end
