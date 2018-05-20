@@ -26,10 +26,10 @@ describe 'As a player' do
       post "/api/v1/games/#{game.id}/shots", params: json_payload, headers: headers
 
       expected_text = 'Shots have been fired!'
-      twilio_text = TwilioMessenger.new(expected_text).call
+      twilio_text = TwilioTextMessenger.new(expected_text).call
 
-      expect(twilio_text.body).to include('Shots have been fired!')
-      expect(twilio_text.from).to eq('+12134002075')
+      expect(twilio_text.body).to include('BattleShift: Your opponent has fired a shot. Fire back!')
+      expect(twilio_text.from).to eq('+13033098898')
     end
   end
 end

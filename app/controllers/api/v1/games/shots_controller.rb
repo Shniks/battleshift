@@ -6,8 +6,7 @@ module Api
         before_action :validate,  only: [:create]
 
         def create
-          twilio_message = "BattleShift: Your opponent has fired a shot. Fire back!"
-          TwilioTextMessenger.new(twilio_message).call
+          return twilio if validate
           render json: @game, message: processor.message
         end
 
@@ -18,6 +17,11 @@ module Api
           return render_400 if @game.invalid_turn?(api_key)
           return render_400('Invalid move. Game over.') unless @game.in_progress?
           return render_400(processor.message) unless processor.run! == true
+        end
+
+        def twilio
+          twilio_message = 'BattleShift: Your opponent has fired a shot. Fire back!'
+          TwilioTextMessenger.new(twilio_message).call
         end
 
         def user
