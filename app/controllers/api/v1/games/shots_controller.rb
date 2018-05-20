@@ -6,7 +6,7 @@ module Api
         before_action :validate,  only: [:create]
 
         def create
-          # return twilio if validate
+          # twilio #works fine, but is sending too many texts when the spec_harness is run 
           render json: @game, message: processor.message
         end
 
