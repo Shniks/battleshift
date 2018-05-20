@@ -81,11 +81,11 @@ describe ShipPlacer do
 
   it "doesn't place the ship if the space is occupied when placing in rows" do
     ShipPlacer.new(board: board,
-                   ship: ship, 
+                   ship: ship,
                    start_space: "A1",
                    end_space: "A2").run
     expect {
-      ShipPlacer.new(board: board, 
+      ShipPlacer.new(board: board,
                      ship: ship,
                      start_space: "A1",
                      end_space: "A2").run
@@ -112,5 +112,17 @@ describe ShipPlacer do
 
   it 'displays the right messages' do
     expect(placer.message).to eq("Successfully placed ship with a size of 2. You have 0 ship(s) to place.")
+  end
+end
+
+describe 'Message' do
+  placer = ShipPlacer.new(board: Board.new(4),
+                           ship: Ship.new(3),
+                           start_space: "A1",
+                           end_space: "A3")
+  it "displays the right message for a ship of a given length" do
+    placer.run
+
+    expect(placer.message).to eq("Successfully placed ship with a size of 3. You have 1 ship(s) to place with a size of 2.")
   end
 end

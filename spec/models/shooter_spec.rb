@@ -5,8 +5,8 @@ describe Shooter do
     describe '#fire!' do
       it 'doesn\'t allow shooting invalid coordinates' do
         shooter = Shooter.new(board: Board.new(4), target: 'A7')
-        
-        expect{ shooter.fire! }.to raise_error
+
+        expect{ shooter.fire! }.to raise_error(InvalidAttack)
       end
     end
   end
