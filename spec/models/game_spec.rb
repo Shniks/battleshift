@@ -6,6 +6,11 @@ RSpec.describe Game, type: :model do
     it { is_expected.to validate_presence_of(:player_2_board) }
   end
 
+  describe "Relationships" do
+    it { is_expected.to belong_to :player_1 }
+    it { is_expected.to belong_to :player_2 }
+  end
+
   describe 'class methods' do
     describe '.create_default' do
       let(:headers) { { 'X-API-key': 'ez123' } }
@@ -20,6 +25,37 @@ RSpec.describe Game, type: :model do
         expect(game.player_2_board).to be_a(Board)
         expect(size1).to eq(4)
         expect(size2).to eq(4)
+      end
+    end
+  end
+
+  describe 'instance methods' do
+    let(:headers) { { 'X-API-key': 'ez123' } }
+    let(:params) { { opponent_email: 'SomeBody@once.com' } }
+    let(:game) { Game.create_default(params, headers) }
+
+    describe '#cycle_turn' do
+      it 'switches between player 1 and player 2' do
+        game.current_turn = 0
+        game.cycle_turn
+
+        expect(game.current_turn).to eq('opponent')
+
+        game.cycle_turn
+
+        expect(game.current_turn).to eq('challenger')
+      end
+    end
+
+    describe '#current_turn' do
+      it 'can be set to player 1 and player 2' do
+        game.current_turn = 0
+
+        expect(game.current_turn).to eq('challenger')
+
+        game.current_turn = 1
+
+        expect(game.current_turn).to eq('opponent')
       end
     end
   end

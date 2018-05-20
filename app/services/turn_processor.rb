@@ -27,7 +27,7 @@ class TurnProcessor
   end
 
   def result
-    board = opponent.board if game.current_turn == 'computer'
+    board = opponent.board if game.current_turn == 'opponent'
     board = player.board if game.current_turn == 'challenger'
     Shooter.fire!(board: board, target: target)
   end
