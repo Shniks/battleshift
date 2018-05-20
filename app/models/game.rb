@@ -8,7 +8,7 @@ class Game < ApplicationRecord
   alias_attribute :p1_board, :player_1_board
   alias_attribute :p2_board, :player_2_board
 
-  enum current_turn: ["challenger", "computer"]
+  enum current_turn: ["challenger", "opponent"]
   serialize :player_1_board
   serialize :player_2_board
 
@@ -26,15 +26,15 @@ class Game < ApplicationRecord
 
   def invalid_turn?(key)
     case current_turn
-    when 'computer'   then key == p2.api_key
-    when 'challenger' then key == p1.api_key
+    when 'challenger'   then key == p1.api_key
+    when 'opponent' then key == p2.api_key
     end
   end
 
   def cycle_turn
     case self.current_turn
-    when 'challenger' then self.current_turn = 'computer'; save
-    when 'computer'   then self.current_turn = 'challenger'; save
+    when 'challenger' then self.current_turn = 'opponent'; save
+    when 'opponent'   then self.current_turn = 'challenger'; save
     end
   end
 
