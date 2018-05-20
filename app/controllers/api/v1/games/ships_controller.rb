@@ -26,7 +26,7 @@ module Api
           end
 
           def ship
-            Ship.new(params[:ship_size])
+            Ship.new(params[:ship_size].to_i)
           end
 
           def set_board
