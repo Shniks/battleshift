@@ -41,6 +41,11 @@ class Game < ApplicationRecord
     winner.nil?
   end
 
+  def valid_coordinates?(coordinates)
+    p1_board.board.flatten.map{|x| x.keys}.flatten.include?(coordinates) ||
+    p2_board.board.flatten.map{|x| x.keys}.flatten.include?(coordinates)
+  end
+
   private
 
   def self.challenger(headers)
