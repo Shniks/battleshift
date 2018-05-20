@@ -6,7 +6,7 @@ module Api
         before_action :validate,  only: [:create]
 
         def create
-          return twilio if validate
+          # return twilio if validate
           render json: @game, message: processor.message
         end
 

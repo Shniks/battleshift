@@ -9,7 +9,7 @@ class TwilioTextMessenger
     client = Twilio::REST::Client.new
     client.messages.create({
       from: Rails.application.secrets.twilio_phone_number,
-      to: '12134002075',
+      to: '12134002075', #insert your text number
       body: message
     })
   end

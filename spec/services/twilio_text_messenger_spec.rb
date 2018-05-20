@@ -21,8 +21,6 @@ describe 'As a player' do
       headers = { 'CONTENT_TYPE' => 'application/json', 'X-API-key' => player_1.api_key }
       json_payload = {target: 'A1'}.to_json
 
-      binding.pry
-
       post "/api/v1/games/#{game.id}/shots", params: json_payload, headers: headers
 
       expected_text = 'Shots have been fired!'
