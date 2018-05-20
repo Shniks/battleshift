@@ -24,13 +24,9 @@ class Game < ApplicationRecord
 
   end
 
-  def turn_sum
-    player_1_turns + player_2_turns
-  end
-
   def invalid_turn?(key)
     case current_turn
-    when 'computer'   then key == p2.api_key 
+    when 'computer'   then key == p2.api_key
     when 'challenger' then key == p1.api_key
     end
   end
