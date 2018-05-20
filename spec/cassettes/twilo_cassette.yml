@@ -1,0 +1,71 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.twilio.com/2010-04-01/Accounts/ACe0ce5787435a4da4206a7d6fc8189b04/Messages.json
+    body:
+      encoding: UTF-8
+      string: Body=BattleShift%3A+Your+opponent+has+fired+a+shot.+Fire+back%21&From=13033098898&To=12134002075
+    headers:
+      User-Agent:
+      - twilio-ruby/5.10.1 (ruby/x86_64-darwin17 2.4.3-p205)
+      Accept-Charset:
+      - utf-8
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept:
+      - application/json
+      Authorization:
+      - Basic QUNlMGNlNTc4NzQzNWE0ZGE0MjA2YTdkNmZjODE4OWIwNDo0MTU4ZWUyNDMwNGJjNmE5OTJlOGE3M2I0NWQyYmQ4OQ==
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Accept, Authorization, Content-Type, If-Match, If-Modified-Since, If-None-Match,
+        If-Unmodified-Since
+      Access-Control-Allow-Methods:
+      - GET, POST, DELETE, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - ETag
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sun, 20 May 2018 15:18:30 GMT
+      Strict-Transport-Security:
+      - max-age=15768000
+      Twilio-Concurrent-Requests:
+      - '1'
+      Twilio-Request-Duration:
+      - '0.085'
+      Twilio-Request-Id:
+      - RQbfe8b8ab2e4f4528b2e3c756918f52b3
+      X-Powered-By:
+      - AT-5000
+      X-Shenanigans:
+      - none
+      Content-Length:
+      - '857'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"sid": "SMd97d378bd93c486284a0e601a21dfbe7", "date_created": "Sun,
+        20 May 2018 15:18:30 +0000", "date_updated": "Sun, 20 May 2018 15:18:30 +0000",
+        "date_sent": null, "account_sid": "ACe0ce5787435a4da4206a7d6fc8189b04", "to":
+        "+12134002075", "from": "+13033098898", "messaging_service_sid": null, "body":
+        "Sent from your Twilio trial account - BattleShift: Your opponent has fired
+        a shot. Fire back!", "status": "queued", "num_segments": "1", "num_media":
+        "0", "direction": "outbound-api", "api_version": "2010-04-01", "price": null,
+        "price_unit": "USD", "error_code": null, "error_message": null, "uri": "/2010-04-01/Accounts/ACe0ce5787435a4da4206a7d6fc8189b04/Messages/SMd97d378bd93c486284a0e601a21dfbe7.json",
+        "subresource_uris": {"media": "/2010-04-01/Accounts/ACe0ce5787435a4da4206a7d6fc8189b04/Messages/SMd97d378bd93c486284a0e601a21dfbe7/Media.json"}}'
+    http_version: 
+  recorded_at: Sun, 20 May 2018 15:18:30 GMT
+recorded_with: VCR 4.0.0
