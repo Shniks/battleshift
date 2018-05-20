@@ -21,7 +21,6 @@ class Game < ApplicationRecord
            player_1_board: Board.new(4),
            player_2_board: Board.new(4),
            current_turn: 1)
-
   end
 
   def invalid_turn?(key)
