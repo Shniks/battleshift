@@ -34,14 +34,21 @@ RSpec.describe Game, type: :model do
     let(:params) { { opponent_email: 'SomeBody@once.com' } }
     let(:game) { Game.create_default(params, headers) }
 
-    # describe '#invalid_turn?' do
-    #   it 'checks for an invalid turn' do
-    #     binding.pry
-    #   end
-    # end
+    describe '#cycle_turn' do
+      it 'switches between player 1 and player 2' do
+        game.current_turn = 0
+        game.cycle_turn
+
+        expect(game.current_turn).to eq('opponent')
+
+        game.cycle_turn
+
+        expect(game.current_turn).to eq('challenger')
+      end
+    end
 
     describe '#current_turn' do
-      it 'switches turns between player 1 and player 2' do
+      it 'can be set to player 1 and player 2' do
         game.current_turn = 0
 
         expect(game.current_turn).to eq('challenger')
