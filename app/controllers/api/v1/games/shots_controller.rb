@@ -17,6 +17,7 @@ module Api
           return render_400 if @game.invalid_turn?(api_key)
           return render_400('Invalid move. Game over.') unless @game.in_progress?
           return render_400(processor.message) unless processor.run! == true
+          return render_400('Invalid coordinates.') unless @game.valid_coordinates?(params[:shot][:target])
         end
 
         def twilio
