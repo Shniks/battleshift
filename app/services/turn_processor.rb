@@ -41,7 +41,7 @@ class TurnProcessor
 
   def messages(result)
     @messages << "Your shot resulted in a #{result}."
-    @messages <<  game_over_message if game_over_message
+    @messages <<  game_over_message unless @game.in_progress? 
   end
 
   def game_over
