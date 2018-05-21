@@ -6,7 +6,7 @@ describe "Api::V1::Shots" do
     let(:player_2) { create(:user) }
     let(:player_1_board)   { Board.new(4) }
     let(:player_2_board)   { Board.new(4) }
-    let(:sm_ship) { Ship.new(2) }
+    let(:sm_ship) { double(length: 2) }
     let(:game) { create(:game) }
 
     it "updates the message and board with a hit" do

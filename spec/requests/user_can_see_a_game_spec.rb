@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe 'GET /api/v1/games/1' do
   context 'with an existing game' do
+    let(:sm_ship) { double(length: 2) }
+    let(:md_ship) { double(length: 3) }
     it 'returns a game with boards' do
       player_1_board = Board.new(4)
       player_2_board = Board.new(4)
-      sm_ship = Ship.new(2)
-      md_ship = Ship.new(3)
 
       ShipPlacer.new(board: player_1_board,
                      ship: sm_ship,
@@ -21,13 +21,13 @@ describe 'GET /api/v1/games/1' do
                     ).run
 
       ShipPlacer.new(board: player_2_board,
-                     ship: sm_ship.dup,
+                     ship: sm_ship,
                      start_space: "A1",
                      end_space: "A2"
                     ).run
 
       ShipPlacer.new(board: player_2_board,
-                     ship: md_ship.dup,
+                     ship: md_ship,
                      start_space: "B1",
                      end_space: "D1"
                     ).run
