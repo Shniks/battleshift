@@ -6,7 +6,7 @@ describe "Api::V1::Shots" do
     let(:player_2) { create(:user) }
     let(:player_1_board)   { Board.new(4) }
     let(:player_2_board)   { Board.new(4) }
-    let(:sm_ship) { Ship.new(2) }
+    let(:sm_ship) { double(length: 2) }
     let(:game) { create(:game) }
 
     it "updates the message and board with a hit" do
@@ -56,7 +56,7 @@ describe "Api::V1::Shots" do
     it "updates the message but not the board with invalid coordinates" do
       p1_board = Board.new(1)
       p2_board = Board.new(1)
-      game = create(:game, player_1_board: p1_board, player_2_board: p2_board) 
+      game = create(:game, player_1_board: p1_board, player_2_board: p2_board)
 
       headers = { "CONTENT_TYPE" => "application/json", 'X-API-key' => game.p2.api_key }
       json_payload = {target: "B1"}.to_json

@@ -2,13 +2,13 @@ require 'rails_helper'
 
 describe 'As a player' do
   describe 'When a shot is fired' do
+    let(:sm_ship) { double(length: 2) }
     it 'a text message is sent to me about it' do
       VCR.use_cassette('twilo_cassette') do
         player_1 = create(:user)
         player_2 = create(:user)
         player_1_board = Board.new(4)
         player_2_board = Board.new(4)
-        sm_ship = Ship.new(2)
         ShipPlacer.new(board: player_2_board,
                        ship: sm_ship,
                        start_space: 'B1',
