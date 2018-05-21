@@ -9,7 +9,7 @@ module Api
       end
 
       def create
-        render json: Game.create_default(params, request.headers)
+        render json: Game.create_default(params[:opponent_email], api_key)
       end
 
       private
