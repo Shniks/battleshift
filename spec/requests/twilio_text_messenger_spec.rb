@@ -3,6 +3,15 @@ require 'rails_helper'
 describe 'As a player' do
   describe 'When a shot is fired' do
     let(:sm_ship) { double(length: 2) }
+    it 'can receive methods' do
+      twilio_text = spy(TwilioTextMessenger)
+      expected_text = 'Some text'
+      twilio_text.new(expected_text)
+      twilio_text.call
+
+      expect(twilio_text).to have_received(:call).once
+    end
+    
     it 'a text message is sent to me about it' do
       VCR.use_cassette('twilo_cassette') do
         player_1 = create(:user)
