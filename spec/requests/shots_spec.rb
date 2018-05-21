@@ -6,17 +6,18 @@ describe "Api::V1::Shots" do
     let(:player_2) { create(:user) }
     let(:player_1_board)   { Board.new(4) }
     let(:player_2_board)   { Board.new(4) }
-    let(:sm_ship) { double(length: 2) }
+    let(:sm_ship) { Ship.new(2) }
     let(:game) { create(:game) }
 
     it "updates the message and board with a hit" do
-      allow_any_instance_of(AiSpaceSelector).to receive(:fire!).and_return("Miss")
-      ShipPlacer.new(board: player_2_board,
+      game = create(:game)
+      ShipPlacer.new(board: game.p1_board,
                      ship: sm_ship,
                      start_space: "A1",
                      end_space: "A2").run
+      game.save!
 
-      headers = { "CONTENT_TYPE" => "application/json", 'X-API-key' => player_1.api_key }
+      headers = { "CONTENT_TYPE" => "application/json", 'X-API-key' => player_2.api_key }
       json_payload = {target: "A1"}.to_json
 
       post "/api/v1/games/#{game.id}/shots", params: json_payload, headers: headers
@@ -25,8 +26,8 @@ describe "Api::V1::Shots" do
 
       game = JSON.parse(response.body, symbolize_names: true)
 
-      expected_messages = "Your shot resulted in a Hit. The computer's shot resulted in a Miss."
-      player_2_targeted_space = game[:player_2_board][:rows].first[:data].first[:status]
+      expected_messages = "Your shot resulted in a Hit."
+      player_2_targeted_space = game[:player_1_board][:rows].first[:data].first[:status]
 
 
       expect(game[:message]).to eq expected_messages
@@ -34,7 +35,6 @@ describe "Api::V1::Shots" do
     end
 
     it "updates the message and board with a miss" do
-      allow_any_instance_of(AiSpaceSelector).to receive(:fire!).and_return("Miss")
       game = create(:game)
 
       headers = { "CONTENT_TYPE" => "application/json", 'X-API-key' => game.p2.api_key }
