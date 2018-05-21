@@ -12,11 +12,9 @@ RSpec.describe Game, type: :model do
   end
 
   describe 'class methods' do
-    describe '.create_default' do
-      let(:headers) { { 'X-API-key': 'ez123' } }
-      let(:params) { { opponent_email: 'SomeBody@once.com' } }
-      let(:game) { Game.create_default(params, headers) }
+    let(:game) { Game.create_default('SomeBody@once.com', 'ez123') }
 
+    describe '.create_default' do
       it 'creates a game with a 4x4 board' do
         size1 = game.player_1_board.board.size
         size2 = game.player_2_board.board.size
@@ -30,9 +28,7 @@ RSpec.describe Game, type: :model do
   end
 
   describe 'instance methods' do
-    let(:headers) { { 'X-API-key': 'ez123' } }
-    let(:params) { { opponent_email: 'SomeBody@once.com' } }
-    let(:game) { Game.create_default(params, headers) }
+    let(:game) { Game.create_default('SomeBody@once.com', 'ez123') }
 
     describe '#cycle_turn' do
       it 'switches between player 1 and player 2' do

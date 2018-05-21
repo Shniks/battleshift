@@ -15,9 +15,9 @@ class Game < ApplicationRecord
   validates :player_1_board, presence: true
   validates :player_2_board, presence: true
 
-  def self.create_default(params, headers)
-    create(player_1: challenger(headers),
-           player_2: opponent(params),
+  def self.create_default(email, key)
+    create(player_1: User.find_by_api_key(key), 
+           player_2: User.find_by_email(email),
            player_1_board: Board.new(4),
            player_2_board: Board.new(4),
            current_turn: 1)
@@ -44,16 +44,6 @@ class Game < ApplicationRecord
   def valid_coordinates?(coordinates)
     p1_board.board.flatten.map{|x| x.keys}.flatten.include?(coordinates) ||
     p2_board.board.flatten.map{|x| x.keys}.flatten.include?(coordinates)
-  end
-
-  private
-
-  def self.challenger(headers)
-    User.find_by_api_key(headers['X-API-key'])
-  end
-
-  def self.opponent(params)
-    User.find_by_email(params[:opponent_email])
   end
 
 end
